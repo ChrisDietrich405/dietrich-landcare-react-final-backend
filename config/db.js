@@ -6,6 +6,7 @@ const db = new Sequelize("landcare", "root", "secret", {
   define: {
     timestamps: false,
   },
+
   pool: {
     max: 5,
     min: 0,
