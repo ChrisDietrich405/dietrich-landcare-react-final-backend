@@ -7,10 +7,10 @@ Customer.hasMany(Quotation, {
   sourceKey: "id",
 });
 
-Service.belongsTo(Customer, {
-  foreignKey: "customer_id",
-  targetKey: "id",
-});
+// Service.belongsTo(Customer, {
+//   foreignKey: "customer_id",
+//   targetKey: "id",
+// });
 
 Quotation.belongsToMany(Service, {
   through: "quotation_services",
