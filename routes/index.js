@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Customer = require("../models/Customer");
 
+const Service = require("../models/Service");
+
 module.exports = () => {
   router.post("/contact", async (req, res) => {
     const customer = await Customer.findOne({
@@ -37,6 +39,13 @@ module.exports = () => {
     res.json({
       success: true,
     });
+  });
+  router.get("/getServices", async (req, res) => {
+    try {
+      const services = await Service.findAll();
+      // console.log(services);
+      res.json({ services });
+    } catch (error) {}
   });
   return router;
 };

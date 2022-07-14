@@ -10,6 +10,10 @@ const Service = db.define("services", {
   name: {
     type: sequelize.STRING,
   },
+
+  permalink: {
+    type: sequelize.STRING,
+  },
 });
 
 module.exports = Service;
