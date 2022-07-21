@@ -36,6 +36,16 @@ module.exports = () => {
     const quotation = await createdCustomer.createQuotation({
       message: req.body.message,
     });
+    const services = req.body.service;
+    for (const service of services) {
+      const createdService = await Service.findOne({
+        where: { permalink: service },
+      });
+      quotation.addService(createdService);
+    }
+
+    //console.log(services);
+
     res.json({
       success: true,
     });
