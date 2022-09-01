@@ -1,9 +1,14 @@
-//second comment
-
 const express = require("express");
-const routes = require("./routes");
+const path = require("path");
+const routes = require("./routes/index");
+const apiRoutes = require("./routes/api");
 const cors = require("cors");
 const app = express();
+app.use(express.static("public"));
+
+app.set("view engine", "ejs");
+// folder views
+app.set("views", path.join(__dirname, "./views"));
 const db = require("./config/db");
 require("./models");
 db.sync()
@@ -15,5 +20,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/", routes());
+app.use("/api", apiRoutes());
 
 app.listen(3001);
