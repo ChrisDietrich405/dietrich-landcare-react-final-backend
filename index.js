@@ -18,7 +18,29 @@ app.use(cors());
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.locals.menu = [
+    {
+      route: "/dashboard",
+      name: "Dashboard"
+    },
+    {
+      route: "/customers",
+      name: "Customers"
+    },
+    {
+      route: "/quotations",
+      name: "Quotations"
+    },
+    {
+      route: "/services",
+      name: "Services"
+    },
+  ]
+  next()
+})
 app.use("/", routes());
 app.use("/api", apiRoutes());
 
